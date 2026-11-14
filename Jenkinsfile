@@ -3,9 +3,9 @@ evonPipeline(
     application: 'django-notes-app',
 
     environments: [
-        staging: [
+        development: [
             branch: 'develop',
-            deployPath: '/tmp/django-notes/staging'
+            deployPath: '/tmp/django-notes/development'
         ],
         production: [
             branch: 'main',
@@ -15,6 +15,6 @@ evonPipeline(
 
     build: [
         type: 'docker',
-        composePath: '.'
+        composePath: '.'    
     ]
 )
