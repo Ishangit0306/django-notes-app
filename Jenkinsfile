@@ -1,29 +1,21 @@
-@Library('Shared')_
-pipeline{
-    agent { label 'dev-server'}
-    
-    stages{
-        stage("Code clone"){
-            steps{
-                sh "whoami"
-            clone("https://github.com/LondheShubham153/django-notes-app.git","main")
-            }
-        }
-        stage("Code Build"){
-            steps{
-            dockerbuild("notes-app","latest")
-            }
-        }
-        stage("Push to DockerHub"){
-            steps{
-                dockerpush("dockerHubCreds","notes-app","latest")
-            }
-        }
-        stage("Deploy"){
-            steps{
-                deploy()
-            }
-        }
-        
-    }
-}
+@Library('evon-jenkins-shared-library@main') _
+
+evonPipeline(
+    application: 'django-notes-app',
+
+    environments: [
+        staging: [
+            branch: 'develop',
+            deployPath: '/tmp/django-notes/staging'
+        ],
+        production: [
+            branch: 'main',
+            deployPath: '/tmp/django-notes/production'
+        ]
+    ],
+
+    build: [
+        type: 'docker',
+        composePath: '.'
+    ]
+)
