@@ -1,5 +1,4 @@
-@Library('evon-jenkins-shared-library@main') _
-
+@Library('evon-ci-library') _
 evonPipeline(
     application: 'django-notes-app',
 
