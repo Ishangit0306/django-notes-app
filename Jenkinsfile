@@ -5,11 +5,11 @@ evonPipeline(
     environments: [
         development: [
             branch: 'develop',
-            deployPath: '/tmp/django-notes/development'
+            deployPath: '/deployments/django-notes/development'
         ],
         production: [
             branch: 'main',
-            deployPath: '/tmp/django-notes/production'
+            deployPath: '/deployments/django-notes/production'
         ]
     ],
 
