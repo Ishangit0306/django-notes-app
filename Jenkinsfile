@@ -15,6 +15,23 @@ evonPipeline(
 
     build: [
         type: 'docker',
-        composePath: '.'    
+        composePath: '.',
+
+        images: [
+            [
+                name: 'django-notes-app',
+                environmentVariable: 'APP_IMAGE'
+            ],
+            [
+                name: 'django-notes-nginx',
+                environmentVariable: 'NGINX_IMAGE'
+            ]
+        ]
+    ],
+
+    registry: [
+        type: 'dockerhub',
+        credentialsId: 'dockerhub-credentials',
+        namespace: 'ishan0305'
     ]
 )
